@@ -56,15 +56,23 @@ const showAnimal = () => {
 
   // check the probability of the animal showing randomly on each square
   let randomNumber = Math.random()
-  let animal
+  let animal = "cat"
   if (randomNumber < 0.7) {
-    animal = "cat" // 70% chance
+    animal // 70% chance
   } else {
     animal = "mouse" // 30% chance
   }
 
-  // show the animal text
-  randomSquare.innerText = animal
+  // show the animal image
+  const img = document.createElement("img")
+  if (animal === "cat") {
+    img.src = "images/cat.png"
+    img.alt = "cat"
+  } else {
+    img.src = "images/mouse.png"
+    img.alt = "mouse"
+  }
+  randomSquare.appendChild(img)
 
   //I used the onclick event instead of addEventListener because addEventListener keeps adding new listeners every time the square is updated. That means if I don’t remove them properly, a single click could trigger multiple functions and increase the score or strikes more than once. Using onclick is simpler here because it automatically overwrites the old click handler, so each square only responds once at a time.
   //https://www.geeksforgeeks.org/javascript/difference-between-addeventlistener-and-onclick-in-javascript/
