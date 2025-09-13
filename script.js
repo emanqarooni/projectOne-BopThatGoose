@@ -33,7 +33,7 @@ const startGame = () => {
   //so in this function the timer goes down each second (1000) and for each second it will be shown on the website and if the timer reached zero or less then it is game over.
 
   gameTimer = setInterval(() => {
-    time -= 1 //the counter goes down by a second
+    time-- //the counter goes down by a second
     timeElement.innerText = time //each second that counts down will be overwritten
 
     //if the timer reaches zero it will call the end game function and the game will be over
@@ -48,19 +48,20 @@ const startGame = () => {
 
 // show a random animal
 const showAnimal = () => {
-  // clear all squares first
+  // clear all squares first, this makes sure the board or all the squares has nothing inside it before a new animal item appear, otherwise old animals or old click events could remain and cause bugs and issues like double scoring or showing up two cats in one square.
   squares.forEach((sq) => {
-    sq.textContent = ""
-    sq.onclick = null
+    sq.textContent = "" // remove any text or image inside the square
+    sq.onclick = null // remove any old click event from the square
   })
 
-  // player can pick any random square
+  //animal showing up randomly at any squares
+  //math.random() → gives a random number between 0 and 1, and squares.length = 9 squares in the board, so multiplying the two together gives the number range between 0 to 9 but it is not a whole number, so I use math.floor which then rounds it down to an integer whole number 0 to 8, which matches the indexes of the squares array (arrays start at 0). This means randomIndex will point to a random square in the grid where we can show an animal, ensuring that each square has an equal chance of being chosen each time the function runs.
   let randomIndex = Math.floor(Math.random() * squares.length)
   let randomSquare = squares[randomIndex]
 
   // check the probability of the animal showing randomly on each square
-  let randomNumber = Math.random()
-  let animal = "cat"
+  let randomNumber = Math.random() //random between 0 to 1
+  let animal = "cat" //default is cat
   if (randomNumber < 0.7) {
     animal // 70% chance
   } else {
@@ -76,7 +77,7 @@ const showAnimal = () => {
     img.src = "images/mouse.png"
     img.alt = "mouse"
   }
-  randomSquare.appendChild(img)
+  randomSquare.appendChild(img) // put the image inside the randomly chosen square so the player sees it
 
   //I used the onclick event instead of addEventListener because addEventListener keeps adding new listeners every time the square is updated. That means if I don’t remove them properly, a single click could trigger multiple functions and increase the score or strikes more than once. Using onclick is simpler here because it automatically overwrites the old click handler, so each square only responds once at a time.
   //https://www.geeksforgeeks.org/javascript/difference-between-addeventlistener-and-onclick-in-javascript/
