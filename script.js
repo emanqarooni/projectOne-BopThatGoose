@@ -12,9 +12,11 @@ const resultElement = document.querySelector("#result")
 const strikesElement = document.querySelector("#strikes")
 const squares = document.querySelectorAll(".smallSquare")
 const restartButton = document.querySelector(".restartButton")
+const nextLevel = document.querySelector(".levelTwo")
 
-// hide restart button at the start
+// hide restart and next level button at the start
 restartButton.style.display = "none"
+nextLevel.style.display = "none"
 
 //showing the values of each variable right away after starting the game
 timeElement.innerText = time
@@ -104,6 +106,7 @@ const showAnimal = () => {
 const checkWin = () => {
   if (score >= target) {
     endGame(true) //if the player wins is true then print out the text result "you won!"
+    nextLevel.style.display = "block"
   }
 }
 
