@@ -76,6 +76,7 @@ const showAnimal = () => {
       strikesElement.innerText = strikes
     }
     scoreElement.innerText = score
+    checkWin()
 
     // immediately clear the square after click which prevents double scoring
     randomSquare.innerText = ""
@@ -83,5 +84,11 @@ const showAnimal = () => {
   }
 }
 
+// Check if player won
+const checkWin = () => {
+  if (score >= target) {
+    resultElement.innerText = "You won!!!!!!!"
+  }
+}
 // Start immediately
 startGame()
