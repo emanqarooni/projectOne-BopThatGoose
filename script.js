@@ -1,5 +1,5 @@
 // global variables
-let time = 20 //initializing the timer
+let time = 10 //initializing the timer
 let score = 0 //initializing the score
 let target = 5 //initializing how many target the player should hit for winning the game
 let strikes = 0 //initializing the number of strikes when the player hits the mouse
@@ -34,7 +34,8 @@ const startGame = () => {
 
     //if the timer reaches zero it will call the end game function and the game will be over
     if (time <= 0) {
-      endGame(false)
+      endGame() //it should work when i clear the the interval in the endgame function
+      resultElement.innerText = "gameover!!!!!"
     }
   }, 1000)
 
@@ -89,6 +90,10 @@ const checkWin = () => {
   if (score >= target) {
     resultElement.innerText = "You won!!!!!!!"
   }
+}
+
+const endGame = () => {
+  clearInterval(gameTimer)
 }
 // Start immediately
 startGame()
