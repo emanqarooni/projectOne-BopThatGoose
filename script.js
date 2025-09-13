@@ -34,8 +34,7 @@ const startGame = () => {
 
     //if the timer reaches zero it will call the end game function and the game will be over
     if (time <= 0) {
-      endGame() //it should work when i clear the the interval in the endgame function
-      resultElement.innerText = "gameover!!!!!"
+      endGame(false) //when the time runs out it should print the losing text
     }
   }, 1000)
 
@@ -73,15 +72,12 @@ const showAnimal = () => {
     if (animal === "cat") {
       score++
       scoreElement.innerText = score
-      if (score >= target) {
-        checkWin()
-      }
+      checkWin()
     } else {
       strikes++
       strikesElement.innerText = strikes
       if (strikes >= 3) {
-        endGame()
-        resultElement.innerText = "GAMEOVER!!!!"
+        endGame(false) //if the player not wins then print otu the losing text
       }
     }
 
@@ -94,21 +90,11 @@ const showAnimal = () => {
 // Check if player won
 const checkWin = () => {
   if (score >= target) {
-    resultElement.innerText = "You won!!!!!!!"
+    endGame(true) //if the player wins is true then print out the text result "you won!"
   }
-
-  //stop the counter and stop showing animals
-  clearInterval(gameTimer)
-  clearInterval(animalTimer)
-
-  // Clear the board and make sure that after ending the game when the player clicks on any of the squares it is really empty and the score or strike number does not increase that is why all the squares when the game ends should be empty and null
-  squares.forEach((sq) => {
-    sq.innerText = ""
-    sq.onclick = null
-  })
 }
 
-const endGame = () => {
+const endGame = (playerWins) => {
   //stop the counter and stop showing animals
   clearInterval(gameTimer)
   clearInterval(animalTimer)
@@ -118,6 +104,13 @@ const endGame = () => {
     sq.innerText = ""
     sq.onclick = null
   })
+
+  //i added a paramater/argument to the end game function that if the player wins is true then print out the winning message and if the player wins is false then print out the game over message
+  if (playerWins === true) {
+    resultElement.innerText = "you wonnn!!!!!!!!!!"
+  } else {
+    resultElement.innerText = "you loooose!!!!!!!!!!!11"
+  }
 }
 // Start immediately
 startGame()
