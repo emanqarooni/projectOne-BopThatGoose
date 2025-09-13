@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.square {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.smallSquare {
+  width: 100px;
+  height: 100px;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 10px;
+}
