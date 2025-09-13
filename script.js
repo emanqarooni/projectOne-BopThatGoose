@@ -1,5 +1,5 @@
 // global variables
-let time = 10 //initializing the timer
+let time = 20 //initializing the timer
 let score = 0 //initializing the score
 let target = 5 //initializing how many target the player should hit for winning the game
 let strikes = 0 //initializing the number of strikes when the player hits the mouse
@@ -72,12 +72,18 @@ const showAnimal = () => {
   randomSquare.onclick = () => {
     if (animal === "cat") {
       score++
+      scoreElement.innerText = score
+      if (score >= target) {
+        checkWin()
+      }
     } else {
       strikes++
       strikesElement.innerText = strikes
+      if (strikes >= 3) {
+        endGame()
+        resultElement.innerText = "GAMEOVER!!!!"
+      }
     }
-    scoreElement.innerText = score
-    checkWin()
 
     // immediately clear the square after click which prevents double scoring
     randomSquare.innerText = ""
@@ -90,6 +96,16 @@ const checkWin = () => {
   if (score >= target) {
     resultElement.innerText = "You won!!!!!!!"
   }
+
+  //stop the counter and stop showing animals
+  clearInterval(gameTimer)
+  clearInterval(animalTimer)
+
+  // Clear the board and make sure that after ending the game when the player clicks on any of the squares it is really empty and the score or strike number does not increase that is why all the squares when the game ends should be empty and null
+  squares.forEach((sq) => {
+    sq.innerText = ""
+    sq.onclick = null
+  })
 }
 
 const endGame = () => {
@@ -97,7 +113,7 @@ const endGame = () => {
   clearInterval(gameTimer)
   clearInterval(animalTimer)
 
-  // Clear the board and make sure that after ending the game when the player clicks on any of the suquares it is really empty and the score or strike number does not increase that is why all the squares when the game ends should be empty and null
+  // Clear the board and make sure that after ending the game when the player clicks on any of the squares it is really empty and the score or strike number does not increase that is why all the squares when the game ends should be empty and null
   squares.forEach((sq) => {
     sq.innerText = ""
     sq.onclick = null
