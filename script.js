@@ -93,7 +93,15 @@ const checkWin = () => {
 }
 
 const endGame = () => {
+  //stop the counter and stop showing animals
   clearInterval(gameTimer)
+  clearInterval(animalTimer)
+
+  // Clear the board and make sure that after ending the game when the player clicks on any of the suquares it is really empty and the score or strike number does not increase that is why all the squares when the game ends should be empty and null
+  squares.forEach((sq) => {
+    sq.innerText = ""
+    sq.onclick = null
+  })
 }
 // Start immediately
 startGame()
