@@ -11,6 +11,10 @@ const targetElement = document.querySelector("#target")
 const resultElement = document.querySelector("#result")
 const strikesElement = document.querySelector("#strikes")
 const squares = document.querySelectorAll(".smallSquare")
+const restartButton = document.querySelector(".restartButton")
+
+// hide restart button at the start
+restartButton.style.display = "none"
 
 //showing the values of each variable right away after starting the game
 timeElement.innerText = time
@@ -119,6 +123,22 @@ const endGame = (playerWins) => {
   } else {
     resultElement.innerText = "you loooose!!!!!!!!!!!11"
   }
+  // show restart button
+  restartButton.style.display = "block"
 }
+
+// restart button click event with addEventListener
+restartButton.addEventListener("click", () => {
+  time = 20
+  score = 0
+  strikes = 0
+  timeElement.innerText = time
+  scoreElement.innerText = score
+  strikesElement.innerText = strikes
+  resultElement.innerText = ""
+  restartButton.style.display = "none"
+  startGame()
+})
+
 // Start immediately
 startGame()
