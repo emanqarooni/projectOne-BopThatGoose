@@ -4,7 +4,7 @@
 #### [LinkedIn](www.linkedin.com/in/eman-qarooni) | [GitHub](https://github.com/emanqarooni)
 ***
 ### ***Description***
-##### A fun silly game that is inspired by whack-a-mole game but with the theme of cats and mouse, where the player should click on the cat to increase the score but when clicking on the mouse it will decrease the score.
+##### A fun silly game that is inspired by whack-a-mole game but with the theme of cats and mouse, where the player should click on the cat to increase the score but when clicking on the mouse the player will receive strikes.
 ***
 ### ***Technologies Used***
 * Visual Studio
@@ -24,17 +24,20 @@
 ##### Figma link: [Figma](https://www.figma.com/design/jiI7PXerQ3rs0trE2KyXBk/BopTheCat?node-id=0-1&t=8LnQPqtUAwNjml4x-1)
 ###### Index Page:
 ![Image](https://miro.medium.com/1*scJ2ib4AtOcNU2pH_7NmSQ.jpeg)
+###### Level One Page:
+###### Level Two Page:
 
 ***
 ### ***Task List***
 - [x] Initialize global variables
 - [x] A grid of nine holes that will randomly displays a cat/mouse appear and disappear.
-- [ ] ~~if the If the user clicks the mouse, they score decrease.~~
+- [ ] ~~if the If the user clicks the mouse, the score decrease.~~
 - [x] If the user clicks the mouse, they strike increase.
 - [x] If the player clicks on the cat, the score increase.
 - [x] display score and timer.
 - [x] Game ends when time runs out, and when the strike reaches three
 - [x] player wins when the score reaches the target
+- [x] Add a reset button
 ***
 ### ***Credit***
 ##### Reference 1: [Reddit](https://www.reddit.com/r/learnjavascript/comments/ql9yes/how_to_set_up_a_timer_in_javascript/)
