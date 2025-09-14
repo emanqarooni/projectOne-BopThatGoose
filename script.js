@@ -57,7 +57,7 @@ const showAnimal = () => {
   })
 
   //animal showing up randomly at any squares
-  //math.random() → gives a random number between 0 and 1, and squares.length = 9 squares in the board, so multiplying the two together gives the number range between 0 to 9 but it is not a whole number, so I use math.floor which then rounds it down to an integer whole number 0 to 8, which matches the indexes of the squares array (arrays start at 0). This means randomIndex will point to a random square in the grid where we can show an animal, ensuring that each square has an equal chance of being chosen each time the function runs.
+  //math.random(): gives a random number between 0 and 1, and squares.length = 9 squares in the board, so multiplying the two together gives the number range between 0 to 9 but it is not a whole number, so I use math.floor which then rounds it down to an integer whole number 0 to 8, which matches the indexes of the squares array (arrays start at 0). This means randomIndex will point to a random square in the grid where we can show an animal, ensuring that each square has an equal chance of being chosen each time the function runs.
   let randomIndex = Math.floor(Math.random() * squares.length)
   let randomSquare = squares[randomIndex]
 
@@ -81,7 +81,7 @@ const showAnimal = () => {
   }
   randomSquare.appendChild(img) // put the image inside the randomly chosen square so the player sees it
 
-  //I used the onclick event instead of addEventListener because addEventListener keeps adding new listeners every time the square is updated. That means if I don’t remove them properly, a single click could trigger multiple functions and increase the score or strikes more than once. Using onclick is simpler here because it automatically overwrites the old click handler, so each square only responds once at a time.
+  //I used the onclick event instead of addEventListener because addEventListener keeps adding new listeners every time the square is updated. That means if I don’t remove them properly, a single click could trigger multiple functions and increase the score or strikes more than once or even two items like two cats showing up in one square. Using onclick is simpler here because it automatically overwrites the old click handler, so each square only responds once at a time.
   //https://www.geeksforgeeks.org/javascript/difference-between-addeventlistener-and-onclick-in-javascript/
   randomSquare.onclick = () => {
     if (animal === "cat") {
