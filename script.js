@@ -13,6 +13,8 @@ const strikesElement = document.querySelector("#strikes")
 const squares = document.querySelectorAll(".smallSquare")
 const restartButton = document.querySelector(".restartButton")
 const nextLevel = document.querySelector(".levelTwo")
+const resetGame = document.querySelector(".resetLevelsButtons")
+const levelTwo = document.querySelector(".levelTwo")
 
 // hide restart and next level button at the start
 restartButton.style.display = "none"
@@ -36,14 +38,14 @@ const startGame = () => {
 
   gameTimer = setInterval(() => {
     //when the timer begins to count down then we get the item to show from the local storage
-    scoreElement.innerText = window.localStorage.getItem("score")
-    strikesElement.innerText = window.localStorage.getItem("strikes")
 
     time-- //the counter goes down by a second
     timeElement.innerText = time //each second that counts down will be overwritten
 
     //if the timer reaches zero it will call the end game function and the game will be over
     if (time <= 0) {
+      scoreElement.innerText = window.localStorage.getItem("score")
+      strikesElement.innerText = window.localStorage.getItem("strikes")
       endGame(false) //when the time runs out it should print the losing text
     }
   }, 1000)
@@ -115,6 +117,7 @@ const checkWin = () => {
   if (score >= target) {
     endGame(true) //if the player wins is true then print out the text result "you won!"
     nextLevel.style.display = "block"
+    restartButton.style.display = "none"
   }
 }
 
@@ -149,7 +152,16 @@ restartButton.addEventListener("click", () => {
   strikesElement.innerText = strikes
   resultElement.innerText = ""
   restartButton.style.display = "none"
+  localStorage.clear()
   startGame()
+})
+
+resetGame.addEventListener("click", () => {
+  localStorage.clear()
+})
+
+levelTwo.addEventListener("click", () => {
+  localStorage.clear()
 })
 
 // Start immediately

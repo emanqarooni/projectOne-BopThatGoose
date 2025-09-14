@@ -12,6 +12,7 @@ const resultElement = document.querySelector("#result")
 const strikesElement = document.querySelector("#strikes")
 const squares = document.querySelectorAll(".smallSquare")
 const restartButton = document.querySelector(".restartButton")
+const resetGame = document.querySelector(".resetLevelsButtons")
 
 // hide restart and next level button at the start
 restartButton.style.display = "none"
@@ -33,15 +34,14 @@ const startGame = () => {
   //so in this function the timer goes down each second (1000) and for each second it will be shown on the website and if the timer reached zero or less then it is game over.
 
   gameTimer = setInterval(() => {
-    //when the timer begins to count down then we get the item to show from the local storage
-    scoreElement.innerText = window.localStorage.getItem("score")
-    strikesElement.innerText = window.localStorage.getItem("strikes")
-
     time-- //the counter goes down by a second
     timeElement.innerText = time //each second that counts down will be overwritten
 
     //if the timer reaches zero it will call the end game function and the game will be over
     if (time <= 0) {
+      //it gets the item at the same time the counter of time decrease
+      scoreElement.innerText = window.localStorage.getItem("score")
+      strikesElement.innerText = window.localStorage.getItem("strikes")
       endGame(false) //when the time runs out it should print the losing text
     }
   }, 1000)
@@ -113,6 +113,7 @@ const showAnimal = () => {
 const checkWin = () => {
   if (score >= target) {
     endGame(true) //if the player wins is true then print out the text result "you won!"
+    restartButton.style.display = "none"
   }
 }
 
@@ -147,7 +148,12 @@ restartButton.addEventListener("click", () => {
   strikesElement.innerText = strikes
   resultElement.innerText = ""
   restartButton.style.display = "none"
+  localStorage.clear()
   startGame()
+})
+
+resetGame.addEventListener("click", () => {
+  localStorage.clear()
 })
 
 // Start immediately
