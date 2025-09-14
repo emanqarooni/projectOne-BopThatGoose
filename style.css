@@ -1,7 +1,8 @@
 body {
   margin: 0;
   text-align: center;
-  background-color: #f9f9f9;
+  background-image: url("images/bg9.jpg");
+  background-repeat: no-repeat;
 }
 
 .square {

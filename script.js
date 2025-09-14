@@ -69,28 +69,28 @@ const showAnimal = () => {
 
   // check the probability of the animal showing randomly on each square
   let randomNumber = Math.random() //random between 0 to 1
-  let animal = "cat" //default is cat
+  let animal = "mouse" //default is cat
   if (randomNumber < 0.7) {
     animal // 70% chance
   } else {
-    animal = "mouse" // 30% chance
+    animal = "cat" // 30% chance
   }
 
   // show the animal image
   const img = document.createElement("img")
-  if (animal === "cat") {
-    img.src = "images/cat.png"
-    img.alt = "cat"
-  } else {
+  if (animal === "mouse") {
     img.src = "images/mouse.png"
     img.alt = "mouse"
+  } else {
+    img.src = "images/cat.png"
+    img.alt = "cat"
   }
   randomSquare.appendChild(img) // put the image inside the randomly chosen square so the player sees it
 
   //I used the onclick event instead of addEventListener because addEventListener keeps adding new listeners every time the square is updated. That means if I don’t remove them properly, a single click could trigger multiple functions and increase the score or strikes more than once or even two items like two cats showing up in one square. Using onclick is simpler here because it automatically overwrites the old click handler, so each square only responds once at a time.
   //https://www.geeksforgeeks.org/javascript/difference-between-addeventlistener-and-onclick-in-javascript/
   randomSquare.onclick = () => {
-    if (animal === "cat") {
+    if (animal === "mouse") {
       score++
       //setting a name for the item that I want to store in the local storage and every time the score increase it prints out the score that gets from the local storage
       window.localStorage.setItem("score", score)
