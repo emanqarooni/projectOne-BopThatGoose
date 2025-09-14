@@ -2,7 +2,7 @@
 let time = 30 //initializing the timer
 let score = 0 //initializing the score
 let target = 5 //initializing how many target the player should hit for winning the game
-let strikes = 0 //initializing the number of strikes when the player hits the mouse
+let strikes = 0 //initializing the number of strikes when the player hits the goose
 
 // connecting html elements
 const timeElement = document.querySelector("#time")
@@ -69,7 +69,7 @@ const showAnimal = () => {
 
   // check the probability of the animal showing randomly on each square
   let randomNumber = Math.random() //random between 0 to 1
-  let animal = "mouse" //default is cat
+  let animal = "goose" //default is cat
   if (randomNumber < 0.7) {
     animal // 70% chance
   } else {
@@ -78,9 +78,9 @@ const showAnimal = () => {
 
   // show the animal image
   const img = document.createElement("img")
-  if (animal === "mouse") {
-    img.src = "images/mouse.png"
-    img.alt = "mouse"
+  if (animal === "goose") {
+    img.src = "images/goose.png"
+    img.alt = "goose"
   } else {
     img.src = "images/cat.png"
     img.alt = "cat"
@@ -90,7 +90,7 @@ const showAnimal = () => {
   //I used the onclick event instead of addEventListener because addEventListener keeps adding new listeners every time the square is updated. That means if I don’t remove them properly, a single click could trigger multiple functions and increase the score or strikes more than once or even two items like two cats showing up in one square. Using onclick is simpler here because it automatically overwrites the old click handler, so each square only responds once at a time.
   //https://www.geeksforgeeks.org/javascript/difference-between-addeventlistener-and-onclick-in-javascript/
   randomSquare.onclick = () => {
-    if (animal === "mouse") {
+    if (animal === "goose") {
       score++
       //setting a name for the item that I want to store in the local storage and every time the score increase it prints out the score that gets from the local storage
       window.localStorage.setItem("score", score)
