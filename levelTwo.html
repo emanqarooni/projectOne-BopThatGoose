@@ -11,16 +11,19 @@
     />
     <link rel="stylesheet" href="style.css" />
     <script defer src="levelTwoScript.js"></script>
-    <title>Bop The Cat</title>
+    <title>Bop That Goose!</title>
   </head>
   <body>
-    <main>
+    <div class="resetLevels">
+      <a href="index.html" class="homeButton"
+        ><img src="images/home.png" alt="Home Button"
+      /></a>
+      <a href="levelOne.html" class="resetLevelsButton"
+        ><img src="images/reset.png" alt="Reset Button"
+      /></a>
+    </div>
+    <main class="mainGame">
       <header class="gameHeader">
-        <div class="resetLevels">
-          <a href="index.html" class="homeButton">Home Button</a>
-          <a href="levelOne.html" class="resetLevelsButton">Reset Game</a>
-        </div>
-
         <div class="gameStats">
           <p>Timer: <span id="time"></span></p>
           <p>Target: <span id="target"></span></p>

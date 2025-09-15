@@ -148,7 +148,7 @@ const endGame = (playerWins) => {
 
 // restart button click event with addEventListener
 restartButton.addEventListener("click", () => {
-  time = 20
+  time = 30
   score = 0
   strikes = 0
   timeElement.innerText = time
