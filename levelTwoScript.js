@@ -14,6 +14,7 @@ const squares = document.querySelectorAll(".smallSquare")
 const restartButton = document.querySelector(".restartButton")
 const resetGame = document.querySelector(".resetLevelsButton")
 const gameResultBlock = document.querySelector(".gameResult")
+const instructions = document.querySelector(".instructions")
 
 //showing the values of each variable right away after starting the game
 timeElement.innerText = time
@@ -156,5 +157,17 @@ resetGame.addEventListener("click", () => {
   localStorage.clear()
 })
 
-// Start immediately
-startGame()
+//when the player hits on the strat game button from the index page then the first thing that the levelOne page will show is the instructions then the actual game begins
+const showInstructions = () => {
+  instructions.style.opacity = 1 // show instructions page first
+
+  // when the player clicks anywhere on the page then it will start the game
+  instructions.addEventListener("click", () => {
+    instructions.style.opacity = 0 // hide instructions
+    instructions.style.display = "none" //and remove the instructions so that the player can play
+    startGame() // start the game
+  })
+}
+
+// call the instructions section first before starting the game
+showInstructions()

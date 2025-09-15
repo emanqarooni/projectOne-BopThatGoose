@@ -16,6 +16,7 @@ const nextLevel = document.querySelector(".levelTwo")
 const resetGame = document.querySelector(".resetLevelsButton")
 const levelTwo = document.querySelector(".levelTwo")
 const gameResultBlock = document.querySelector(".gameResult")
+const instructions = document.querySelector(".instructions")
 
 //showing the values of each variable right away after starting the game
 timeElement.innerText = time
@@ -69,7 +70,7 @@ const showAnimal = () => {
 
   // check the probability of the animal showing randomly on each square
   let randomNumber = Math.random() //random between 0 to 1
-  let animal = "goose" //default is cat
+  let animal = "goose" //default is goose
   if (randomNumber < 0.7) {
     animal // 70% chance
   } else {
@@ -170,5 +171,17 @@ levelTwo.addEventListener("click", () => {
   localStorage.clear()
 })
 
-// Start immediately
-startGame()
+//when the player hits on the strat game button from the index page then the first thing that the levelOne page will show is the instructions then the actual game begins
+const showInstructions = () => {
+  instructions.style.opacity = 1 // show instructions page first
+
+  // when the player clicks anywhere on the page then it will start the game
+  instructions.addEventListener("click", () => {
+    instructions.style.opacity = 0 // hide instructions
+    instructions.style.display = "none" //and remove the instructions so that the player can play
+    startGame() // start the game
+  })
+}
+
+// call the instructions section first before starting the game
+showInstructions()

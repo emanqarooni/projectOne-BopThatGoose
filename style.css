@@ -28,7 +28,7 @@ body {
   border: 10px solid #a0522d;
   border-radius: 16px;
   padding: 20px 40px;
-  animation: bounce;
+  animation: bounceIn;
   animation-duration: 2s;
 }
 
@@ -42,7 +42,7 @@ body {
   border: 3px solid #5c2e00;
   border-radius: 20px;
   text-decoration: none; /*to remove the underline*/
-  animation: bounce;
+  animation: fadeIn;
   animation-duration: 2s;
 }
 
@@ -189,4 +189,23 @@ body {
 
 .resetLevels img:hover {
   transform: scale(1.1);
+}
+
+.instructions {
+  position: fixed;
+  top: 50%; /* centering vertically */
+  left: 50%; /* centering horizontally */
+  transform: translate(-50%, -50%); /* adjust for the element's own size */
+  opacity: 1; /* starting with full visibility */
+  transition: all 0.5s ease;
+  background-color: #f8e6c2;
+  border: 12px solid #a0522d;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 100; /* this property ensures that the instructions appears above other elements */
+  text-align: center;
+  width: 35vw;
+  height: 70vh;
+  font-size: 1.4rem;
 }
