@@ -1,27 +1,94 @@
 body {
   margin: 0;
+  height: 100vh;
+  width: 100vw;
   text-align: center;
-  background-image: url("images/bg9.jpg");
-  background-repeat: no-repeat;
+  background-image: url("images/bg11.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: "Pixelify Sans";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+.indexTitle {
+  font-size: 4rem;
+  color: #5c2e00;
+  text-shadow: 2px 2px #f8e6c2;
+  background-color: #f8e6c2;
+  border: 10px solid #a0522d;
+  border-radius: 16px;
+  padding: 20px 40px;
+}
+
+.startGameBtn {
+  display: inline-block; /*to allow padding and margin*/
+  margin-top: 30px;
+  padding: 12px 28px;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #a0522d;
+  border: 3px solid #5c2e00;
+  border-radius: 20px;
+  text-decoration: none; /*to remove the underline*/
+}
+
+.startGameBtn:hover {
+  background-color: #8b4513;
+  transform: scale(
+    1.05
+  ); /* to make the button a bit larger when hovering on it */
+  transition: all 0.3s ease-in-out; /*a bit of animation when the button is scaling large there is a smooth transition*/
+}
+
+.gameHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameStats {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 10px 0;
+  background-color: #f8e6c2;
+  border: 4px solid #a0522d;
+  border-radius: 12px;
+  padding: 8px 20px;
+  font-size: 1.2rem;
+  color: #5c2e00;
+  text-shadow: 1px 1px #fff5e1;
+}
 .square {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
-  gap: 10px;
+  gap: 20px;
   justify-content: center;
+  align-items: center;
   margin-top: 20px;
 }
 
 .smallSquare {
-  width: 100px;
-  height: 100px;
-  background: #ddd;
+  width: 110px;
+  height: 110px;
+  background: #f8e6c2;
+  border: 4px solid #a0522d;
+  border-radius: 16px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
   cursor: pointer;
-  border-radius: 10px;
+}
+
+.smallSquare:hover {
+  background: #f1d5a8;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
 }

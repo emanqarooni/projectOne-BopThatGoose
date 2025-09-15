@@ -13,7 +13,7 @@ const strikesElement = document.querySelector("#strikes")
 const squares = document.querySelectorAll(".smallSquare")
 const restartButton = document.querySelector(".restartButton")
 const nextLevel = document.querySelector(".levelTwo")
-const resetGame = document.querySelector(".resetLevelsButtons")
+const resetGame = document.querySelector(".resetLevelsButton")
 const levelTwo = document.querySelector(".levelTwo")
 
 // hide restart and next level button at the start
@@ -79,11 +79,11 @@ const showAnimal = () => {
   // show the animal image
   const img = document.createElement("img")
   if (animal === "goose") {
-    img.src = "images/goose.png"
-    img.alt = "goose"
+    img.setAttribute("src", "images/goose.png")
+    img.setAttribute("alt", "goose")
   } else {
-    img.src = "images/cat.png"
-    img.alt = "cat"
+    img.setAttribute("src", "images/cat.png")
+    img.setAttribute("alt", "cat")
   }
   randomSquare.appendChild(img) // put the image inside the randomly chosen square so the player sees it
 

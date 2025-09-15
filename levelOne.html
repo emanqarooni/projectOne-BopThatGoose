@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
     <title>Bop The Cat</title>
@@ -10,19 +16,15 @@
   <body>
     <main>
       <header class="gameHeader">
+        <div class="resetLevels">
+          <a href="index.html" class="homeButton">Home Button</a>
+          <a href="levelOne.html" class="resetLevelsButton">Reset Game</a>
+        </div>
         <div class="gameStats">
           <p>Timer: <span id="time"></span></p>
           <p>Target: <span id="target"></span></p>
           <p>Score: <span id="score"></span></p>
           <p>Strikes: <span id="strikes"></span></p>
-        </div>
-        <div class="title">
-          <p>Bop The Cat</p>
-        </div>
-        <div class="resetLevels">
-          <button class="resetLevelsButtons">
-            <a href="levelOne.html">Reset Game</a>
-          </button>
         </div>
       </header>
 
