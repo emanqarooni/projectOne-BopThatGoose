@@ -12,10 +12,12 @@ const resultElement = document.querySelector("#result")
 const strikesElement = document.querySelector("#strikes")
 const squares = document.querySelectorAll(".smallSquare")
 const restartButton = document.querySelector(".restartButton")
-const resetGame = document.querySelector(".resetLevelsButtons")
+const resetGame = document.querySelector(".resetLevelsButton")
+const gameResultBlock = document.querySelector(".gameResult")
 
 // hide restart and next level button at the start
 restartButton.style.display = "none"
+gameResultBlock.style.display = "none"
 
 //showing the values of each variable right away after starting the game
 timeElement.innerText = time
@@ -100,6 +102,7 @@ const showAnimal = () => {
 
       if (strikes >= 3) {
         endGame(false) //if the player not wins then print otu the losing text
+        gameResultBlock.style.display = "block"
       }
     }
 
@@ -130,12 +133,13 @@ const endGame = (playerWins) => {
 
   //i added a paramater/argument to the end game function that if the player wins is true then print out the winning message and if the player wins is false then print out the game over message
   if (playerWins === true) {
-    resultElement.innerText = "you wonnn!!!!!!!!!!"
+    resultElement.innerText = "You Won!"
   } else {
-    resultElement.innerText = "you loooose!!!!!!!!!!!11"
+    resultElement.innerText = "Game Over!"
   }
   // show restart button
   restartButton.style.display = "block"
+  gameResultBlock.style.display = "block"
 }
 
 // restart button click event with addEventListener
@@ -148,6 +152,7 @@ restartButton.addEventListener("click", () => {
   strikesElement.innerText = strikes
   resultElement.innerText = ""
   restartButton.style.display = "none"
+  gameResultBlock.style.display = "none"
   localStorage.clear()
   startGame()
 })
