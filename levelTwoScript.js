@@ -15,10 +15,6 @@ const restartButton = document.querySelector(".restartButton")
 const resetGame = document.querySelector(".resetLevelsButton")
 const gameResultBlock = document.querySelector(".gameResult")
 
-// hide restart and next level button at the start
-restartButton.style.display = "none"
-gameResultBlock.style.display = "none"
-
 //showing the values of each variable right away after starting the game
 timeElement.innerText = time
 scoreElement.innerText = score
@@ -102,7 +98,6 @@ const showAnimal = () => {
 
       if (strikes >= 3) {
         endGame(false) //if the player not wins then print otu the losing text
-        gameResultBlock.style.display = "block"
       }
     }
 
@@ -137,9 +132,9 @@ const endGame = (playerWins) => {
   } else {
     resultElement.innerText = "Game Over!"
   }
-  // show restart button
-  restartButton.style.display = "block"
-  gameResultBlock.style.display = "block"
+  // show restart button when losing the game
+  restartButton.style.opacity = 1
+  gameResultBlock.style.opacity = 1
 }
 
 // restart button click event with addEventListener
@@ -151,8 +146,8 @@ restartButton.addEventListener("click", () => {
   scoreElement.innerText = score
   strikesElement.innerText = strikes
   resultElement.innerText = ""
-  restartButton.style.display = "none"
-  gameResultBlock.style.display = "none"
+  restartButton.style.opacity = 0
+  gameResultBlock.style.opacity = 0
   localStorage.clear()
   startGame()
 })

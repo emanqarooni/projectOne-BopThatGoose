@@ -17,11 +17,6 @@ const resetGame = document.querySelector(".resetLevelsButton")
 const levelTwo = document.querySelector(".levelTwo")
 const gameResultBlock = document.querySelector(".gameResult")
 
-// hide restart and next level button at the start
-restartButton.style.display = "none"
-nextLevel.style.display = "none"
-gameResultBlock.style.display = "none"
-
 //showing the values of each variable right away after starting the game
 timeElement.innerText = time
 scoreElement.innerText = score
@@ -49,6 +44,9 @@ const startGame = () => {
       scoreElement.innerText = window.localStorage.getItem("score")
       strikesElement.innerText = window.localStorage.getItem("strikes")
       endGame(false) //when the time runs out it should print the losing text
+      gameResultBlock.style.opacity = 1
+      restartButton.style.opacity = 1
+      nextLevel.style.display = "none"
     }
   }, 1000)
 
@@ -105,6 +103,9 @@ const showAnimal = () => {
       strikesElement.innerText = window.localStorage.getItem("strikes")
       if (strikes >= 3) {
         endGame(false) //if the player not wins then print otu the losing text
+        gameResultBlock.style.opacity = 1
+        restartButton.style.opacity = 1
+        nextLevel.style.display = "none"
       }
     }
 
@@ -118,7 +119,8 @@ const showAnimal = () => {
 const checkWin = () => {
   if (score >= target) {
     endGame(true) //if the player wins is true then print out the text result "you won!"
-    gameResultBlock.style.display = "block"
+    gameResultBlock.style.opacity = 1
+    nextLevel.style.opacity = 1
     nextLevel.style.display = "block"
     restartButton.style.display = "none"
   }
@@ -141,9 +143,6 @@ const endGame = (playerWins) => {
   } else {
     resultElement.innerText = "Game Over!"
   }
-  // show restart button
-  gameResultBlock.style.display = "block"
-  restartButton.style.display = "block"
 }
 
 // restart button click event with addEventListener
@@ -155,8 +154,10 @@ restartButton.addEventListener("click", () => {
   scoreElement.innerText = score
   strikesElement.innerText = strikes
   resultElement.innerText = ""
-  restartButton.style.display = "none"
-  gameResultBlock.style.display = "none"
+  restartButton.style.opacity = 0
+  gameResultBlock.style.opacity = 0
+  nextLevel.style.opacity = 0
+  nextLevel.style.display = "none"
   localStorage.clear()
   startGame()
 })

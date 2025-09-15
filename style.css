@@ -13,6 +13,47 @@ body {
   align-items: center;
 }
 
+.bodyIndex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.indexTitle {
+  font-size: 4rem;
+  color: #5c2e00;
+  text-shadow: 2px 2px #f8e6c2;
+  background-color: #f8e6c2;
+  border: 10px solid #a0522d;
+  border-radius: 16px;
+  padding: 20px 40px;
+  animation: bounce;
+  animation-duration: 2s;
+}
+
+.startGameBtn {
+  display: inline-block; /*to allow padding and margin*/
+  margin-top: 30px;
+  padding: 12px 28px;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #a0522d;
+  border: 3px solid #5c2e00;
+  border-radius: 20px;
+  text-decoration: none; /*to remove the underline*/
+  animation: bounce;
+  animation-duration: 2s;
+}
+
+.startGameBtn:hover {
+  background-color: #8b4513;
+  transform: scale(
+    1.05
+  ); /* to make the button a bit larger when hovering on it */
+  transition: all 0.3s ease-in-out; /*a bit of animation when the button is scaling large there is a smooth transition*/
+}
+
 .mainGame {
   display: grid;
   grid-template-columns: auto;
@@ -43,6 +84,15 @@ body {
   color: #5c2e00;
   text-shadow: 1px 1px #fff5e1;
 }
+
+.gameStats p {
+  font-weight: bold;
+}
+
+.gameStats span {
+  font-weight: normal;
+}
+
 .square {
   display: grid;
   grid-template-columns: repeat(3, 100px);
@@ -75,8 +125,8 @@ body {
 
 .gameResult {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
   margin-top: 30px;
   background-color: #f8e6c2;
@@ -86,6 +136,8 @@ body {
   font-size: 1.2rem;
   color: #5c2e00;
   text-shadow: 1px 1px #fff5e1;
+  opacity: 0;
+  gap: 180px;
 }
 
 #result {
@@ -105,8 +157,7 @@ body {
   padding: 8px 15px;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 10px;
-  margin-left: 148px;
+  opacity: 0;
 }
 
 .restartButton:hover,
