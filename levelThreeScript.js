@@ -1,7 +1,7 @@
 // global variables
-let time = 20 //initializing the timer
+let time = 15 //initializing the timer
 let score = parseInt(window.localStorage.getItem("score")) || 0 // retrieve score from local storage or set to 0
-let target = 7 //initializing how many target the player should hit for winning the game
+let target = 8 //initializing how many target the player should hit for winning the game
 let strikes = parseInt(window.localStorage.getItem("strikes")) || 0 // retrieve score from local storage or set to 0the goose
 
 // connecting html elements
@@ -12,7 +12,6 @@ const resultElement = document.querySelector("#result")
 const strikesElement = document.querySelector("#strikes")
 const squares = document.querySelectorAll(".smallSquare")
 const restartButton = document.querySelector(".restartButton")
-const nextLevel = document.querySelector(".levelThree")
 const resetGame = document.querySelector(".resetLevelsButton")
 const gameResultBlock = document.querySelector(".gameResult")
 const instructions = document.querySelector(".instructions")
@@ -26,7 +25,7 @@ strikesElement.innerText = strikes
 
 // these variables will store the interval ids so we can stop them later
 let gameTimer //used for counting down the time and clearing the time
-let animalTimer //used for showing a new animal every second and stop showing the animals
+let iconsTimer //used for showing a new animal every second and stop showing the animals
 
 // a function that start the game
 const startGame = () => {
@@ -40,22 +39,19 @@ const startGame = () => {
 
     //if the timer reaches zero it will call the end game function and the game will be over
     if (time <= 0) {
-      // //it gets the item at the same time the counter of time decrease
-      // scoreElement.innerText = window.localStorage.getItem("score")
-      // strikesElement.innerText = window.localStorage.getItem("strikes")
+      //it gets the item at the same time the counter of time decrease
+      scoreElement.innerText = window.localStorage.getItem("score")
+      strikesElement.innerText = window.localStorage.getItem("strikes")
       endGame(false) //when the time runs out it should print the losing text
-      gameResultBlock.style.opacity = 1
-      restartButton.style.opacity = 1
-      nextLevel.style.display = "none"
     }
   }, 1000)
 
   // Show animal any animal every more than half seconds
-  animalTimer = setInterval(showAnimal, 600)
+  iconsTimer = setInterval(showIcon, 700)
 }
 
 // show a random animal
-const showAnimal = () => {
+const showIcon = () => {
   // clear all squares first, this makes sure the board or all the squares has nothing inside it before a new animal item appear, otherwise old animals or old click events could remain and cause bugs and issues like double scoring or showing up two cats in one square.
   squares.forEach((sq) => {
     sq.textContent = "" // remove any text or image inside the square
@@ -88,18 +84,23 @@ const showAnimal = () => {
 
   // check the probability of the animal showing randomly on each square
   let randomNumber = Math.random() //random between 0 to 1
-  let animal = "goose" //default is cat
-  if (randomNumber < 0.6) {
-    animal // 60% chance
+  let icon = "goose" //default is cat
+  if (randomNumber < 0.5) {
+    icon // 60% chance
+  } else if (randomNumber < 0.75) {
+    icon = "bread"
   } else {
-    animal = "cat" // 40% chance
+    icon = "cat" // 40% chance
   }
 
   // show the animal image
   const img = document.createElement("img")
-  if (animal === "goose") {
+  if (icon === "goose") {
     img.setAttribute("src", "images/goose.png")
     img.setAttribute("alt", "goose")
+  } else if (icon === "bread") {
+    img.setAttribute("src", "images/reset.png")
+    img.setAttribute("alt", "bread")
   } else {
     img.setAttribute("src", "images/cat.png")
     img.setAttribute("alt", "cat")
@@ -109,12 +110,15 @@ const showAnimal = () => {
   //I used the onclick event instead of addEventListener because addEventListener keeps adding new listeners every time the square is updated. That means if I don’t remove them properly, a single click could trigger multiple functions and increase the score or strikes more than once. Using onclick is simpler here because it automatically overwrites the old click handler, so each square only responds once at a time.
   //https://www.geeksforgeeks.org/javascript/difference-between-addeventlistener-and-onclick-in-javascript/
   randomSquare.onclick = () => {
-    if (animal === "goose") {
+    if (icon === "goose") {
       score++
       //setting a name for the item that I want to store in the local storage and every time the score increase it prints out the score that gets from the local storage
       window.localStorage.setItem("score", score)
       scoreElement.innerText = window.localStorage.getItem("score")
       checkWin()
+    } else if (icon === "bread") {
+      time += 10
+      timeElement.innerText = time
     } else {
       strikes++
       //setting a name for the strike var that I want to store in the local storage and every time the strikes increase it prints out the strike points that gets from the local storage
@@ -123,9 +127,6 @@ const showAnimal = () => {
 
       if (strikes >= 3) {
         endGame(false) //if the player not wins then print otu the losing text
-        gameResultBlock.style.opacity = 1
-        restartButton.style.opacity = 1
-        nextLevel.style.display = "none"
       }
     }
 
@@ -139,9 +140,6 @@ const showAnimal = () => {
 const checkWin = () => {
   if (score >= target) {
     endGame(true) //if the player wins is true then print out the text result "you won!"
-    gameResultBlock.style.opacity = 1
-    nextLevel.style.opacity = 1
-    nextLevel.style.display = "block"
     restartButton.style.display = "none"
   }
 }
@@ -149,7 +147,7 @@ const checkWin = () => {
 const endGame = (playerWins) => {
   //stop the counter and stop showing animals
   clearInterval(gameTimer)
-  clearInterval(animalTimer)
+  clearInterval(iconsTimer)
 
   // Clear the board and make sure that after ending the game when the player clicks on any of the squares it is really empty and the score or strike number does not increase that is why all the squares when the game ends should be empty and null
   squares.forEach((sq) => {
@@ -170,7 +168,7 @@ const endGame = (playerWins) => {
 
 // restart button click event with addEventListener
 restartButton.addEventListener("click", () => {
-  time = 20
+  time = 15
   score = 0
   strikes = 0
   timeElement.innerText = time
@@ -179,17 +177,11 @@ restartButton.addEventListener("click", () => {
   resultElement.innerText = ""
   restartButton.style.opacity = 0
   gameResultBlock.style.opacity = 0
-  nextLevel.style.opacity = 0
-  nextLevel.style.display = "none"
   localStorage.clear()
   startGame()
 })
 
 resetGame.addEventListener("click", () => {
-  localStorage.clear()
-})
-
-nextLevel.addEventListener("click", () => {
   localStorage.clear()
 })
 

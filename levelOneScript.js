@@ -14,7 +14,6 @@ const squares = document.querySelectorAll(".smallSquare")
 const restartButton = document.querySelector(".restartButton")
 const nextLevel = document.querySelector(".levelTwo")
 const resetGame = document.querySelector(".resetLevelsButton")
-const levelTwo = document.querySelector(".levelTwo")
 const gameResultBlock = document.querySelector(".gameResult")
 const instructions = document.querySelector(".instructions")
 const cursor = document.querySelector(".cursor img")
@@ -186,7 +185,7 @@ resetGame.addEventListener("click", () => {
   localStorage.clear()
 })
 
-levelTwo.addEventListener("click", () => {
+nextLevel.addEventListener("click", () => {
   localStorage.clear()
 })
 
