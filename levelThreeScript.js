@@ -1,7 +1,7 @@
 // global variables
 let time = 15 //initializing the timer
 let score = parseInt(window.localStorage.getItem("score")) || 0 // retrieve score from local storage or set to 0
-let target = 8 //initializing how many target the player should hit for winning the game
+let target = 10 //initializing how many target the player should hit for winning the game
 let strikes = parseInt(window.localStorage.getItem("strikes")) || 0 // retrieve score from local storage or set to 0the goose
 
 // connecting html elements
@@ -47,7 +47,7 @@ const startGame = () => {
   }, 1000)
 
   // Show animal any animal every more than half seconds
-  iconsTimer = setInterval(showIcon, 700)
+  iconsTimer = setInterval(showIcon, 600)
 }
 
 // show a random animal
@@ -87,7 +87,7 @@ const showIcon = () => {
   let icon = "goose" //default is cat
   if (randomNumber < 0.5) {
     icon // 60% chance
-  } else if (randomNumber < 0.75) {
+  } else if (randomNumber < 0.6) {
     icon = "bread"
   } else {
     icon = "cat" // 40% chance
@@ -98,12 +98,18 @@ const showIcon = () => {
   if (icon === "goose") {
     img.setAttribute("src", "images/goose.png")
     img.setAttribute("alt", "goose")
+    img.style.width = "100px"
+    img.style.height = "100px"
   } else if (icon === "bread") {
-    img.setAttribute("src", "images/reset.png")
+    img.setAttribute("src", "images/bread.png")
     img.setAttribute("alt", "bread")
+    img.style.width = "100px"
+    img.style.height = "100px"
   } else {
     img.setAttribute("src", "images/cat.png")
     img.setAttribute("alt", "cat")
+    img.style.width = "100px"
+    img.style.height = "100px"
   }
   randomSquare.appendChild(img) // put the image inside the randomly chosen square so the player sees it
 
@@ -125,7 +131,7 @@ const showIcon = () => {
       window.localStorage.setItem("strikes", strikes)
       strikesElement.innerText = window.localStorage.getItem("strikes")
 
-      if (strikes >= 3) {
+      if (strikes >= 2) {
         endGame(false) //if the player not wins then print otu the losing text
       }
     }
