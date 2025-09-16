@@ -17,6 +17,7 @@ const resetGame = document.querySelector(".resetLevelsButton")
 const levelTwo = document.querySelector(".levelTwo")
 const gameResultBlock = document.querySelector(".gameResult")
 const instructions = document.querySelector(".instructions")
+const hammerCursor = document.querySelector("#hammer")
 
 //showing the values of each variable right away after starting the game
 timeElement.innerText = time
@@ -98,6 +99,7 @@ const showAnimal = () => {
       scoreElement.innerText = window.localStorage.getItem("score")
       checkWin()
     } else {
+      hammerCursor.style.transform = "translate(-50, -50) rotate(30deg)"
       strikes++
       //setting a name for the strike var that I want to store in the local storage and every time the strikes increase it prints out the strike points that gets from the local storage
       window.localStorage.setItem("strikes", strikes)
@@ -185,3 +187,7 @@ const showInstructions = () => {
 
 // call the instructions section first before starting the game
 showInstructions()
+
+document.addEventListener("mousedown", () => {
+  hammerCursor.style.transform = "translate(-50, -50) rotate(-30deg)"
+})

@@ -13,11 +13,8 @@ body {
   align-items: center;
 }
 
-.bodyIndex {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.mainIndex {
+  margin-top: 60px;
 }
 
 .indexTitle {
@@ -29,7 +26,10 @@ body {
   border-radius: 16px;
   padding: 20px 40px;
   animation: bounceIn;
-  animation-duration: 2s;
+  animation-duration: 1s;
+  width: 50vw;
+  margin: 0;
+  margin-left: 340px;
 }
 
 .startGameBtn {
@@ -52,6 +52,26 @@ body {
     1.05
   ); /* to make the button a bit larger when hovering on it */
   transition: all 0.3s ease-in-out; /*a bit of animation when the button is scaling large there is a smooth transition*/
+}
+
+.catRotating {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  top: 20%;
+  left: 27%;
+  animation: fadeIn;
+  animation-duration: 10s;
+}
+
+.gooseRotating {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  bottom: 27%;
+  right: 28%;
+  animation: fadeIn;
+  animation-duration: 10s;
 }
 
 .mainGame {
@@ -114,7 +134,7 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  cursor: pointer;
+  cursor: url("images/hammer.png"), auto;
 }
 
 .smallSquare:hover {
@@ -208,4 +228,16 @@ body {
   width: 35vw;
   height: 70vh;
   font-size: 1.4rem;
+}
+
+#hammer {
+  cursor: url("images/hammer.png"), auto;
+  transition: all 0.5s ease;
+  width: 50px;
+  height: 50px;
+}
+
+.square,
+.smallSquare {
+  cursor: none;
 }
