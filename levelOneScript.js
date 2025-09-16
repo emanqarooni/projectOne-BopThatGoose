@@ -1,8 +1,8 @@
 // global variables
 let time = 30 //initializing the timer
-let score = 0 //initializing the score
+let score = parseInt(window.localStorage.getItem("score")) || 0 // retrieve score from local storage or set to 0
 let target = 5 //initializing how many target the player should hit for winning the game
-let strikes = 0 //initializing the number of strikes when the player hits the goose
+let strikes = parseInt(window.localStorage.getItem("strikes")) || 0 // retrieve score from local storage or set to 0
 
 // connecting html elements
 const timeElement = document.querySelector("#time")
@@ -17,7 +17,7 @@ const resetGame = document.querySelector(".resetLevelsButton")
 const levelTwo = document.querySelector(".levelTwo")
 const gameResultBlock = document.querySelector(".gameResult")
 const instructions = document.querySelector(".instructions")
-const hammerCursor = document.querySelector("#hammer")
+const cursor = document.querySelector(".cursor img")
 
 //showing the values of each variable right away after starting the game
 timeElement.innerText = time
@@ -37,14 +37,13 @@ const startGame = () => {
 
   gameTimer = setInterval(() => {
     //when the timer begins to count down then we get the item to show from the local storage
-
+    scoreElement.innerText = window.localStorage.getItem("score")
+    strikesElement.innerText = window.localStorage.getItem("strikes")
     time-- //the counter goes down by a second
     timeElement.innerText = time //each second that counts down will be overwritten
 
     //if the timer reaches zero it will call the end game function and the game will be over
     if (time <= 0) {
-      scoreElement.innerText = window.localStorage.getItem("score")
-      strikesElement.innerText = window.localStorage.getItem("strikes")
       endGame(false) //when the time runs out it should print the losing text
       gameResultBlock.style.opacity = 1
       restartButton.style.opacity = 1
@@ -62,6 +61,25 @@ const showAnimal = () => {
   squares.forEach((sq) => {
     sq.textContent = "" // remove any text or image inside the square
     sq.onclick = null // remove any old click event from the square
+
+    //cursor whacking
+    sq.addEventListener("mouseenter", () => {
+      cursor.style.display = "block" // Show the cursor image when entering the square
+    })
+    sq.addEventListener("mouseleave", () => {
+      cursor.style.display = "none" //
+      cursor.style.cursor = "auto" // Revert to normal cursor when leaving
+    })
+    sq.addEventListener("mousemove", (e) => {
+      cursor.style.top = e.pageY + "px"
+      cursor.style.left = e.pageX + "px"
+    })
+    sq.addEventListener("click", () => {
+      cursor.style.animation = "hit 100s ease"
+      setTimeout(() => {
+        cursor.style.removeProperty("animation")
+      }, 100)
+    })
   })
 
   //animal showing up randomly at any squares
@@ -99,7 +117,6 @@ const showAnimal = () => {
       scoreElement.innerText = window.localStorage.getItem("score")
       checkWin()
     } else {
-      hammerCursor.style.transform = "translate(-50, -50) rotate(30deg)"
       strikes++
       //setting a name for the strike var that I want to store in the local storage and every time the strikes increase it prints out the strike points that gets from the local storage
       window.localStorage.setItem("strikes", strikes)
@@ -176,7 +193,8 @@ levelTwo.addEventListener("click", () => {
 //when the player hits on the strat game button from the index page then the first thing that the levelOne page will show is the instructions then the actual game begins
 const showInstructions = () => {
   instructions.style.opacity = 1 // show instructions page first
-
+  scoreElement.innerText = window.localStorage.getItem("score")
+  strikesElement.innerText = window.localStorage.getItem("strikes")
   // when the player clicks anywhere on the page then it will start the game
   instructions.addEventListener("click", () => {
     instructions.style.opacity = 0 // hide instructions
@@ -187,7 +205,3 @@ const showInstructions = () => {
 
 // call the instructions section first before starting the game
 showInstructions()
-
-document.addEventListener("mousedown", () => {
-  hammerCursor.style.transform = "translate(-50, -50) rotate(-30deg)"
-})

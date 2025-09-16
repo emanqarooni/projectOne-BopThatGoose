@@ -1,8 +1,8 @@
 // global variables
 let time = 20 //initializing the timer
-let score = 0 //initializing the score
+let score = parseInt(window.localStorage.getItem("score")) || 0 // retrieve score from local storage or set to 0
 let target = 7 //initializing how many target the player should hit for winning the game
-let strikes = 0 //initializing the number of strikes when the player hits the goose
+let strikes = parseInt(window.localStorage.getItem("strikes")) || 0 // retrieve score from local storage or set to 0the goose
 
 // connecting html elements
 const timeElement = document.querySelector("#time")
@@ -15,6 +15,7 @@ const restartButton = document.querySelector(".restartButton")
 const resetGame = document.querySelector(".resetLevelsButton")
 const gameResultBlock = document.querySelector(".gameResult")
 const instructions = document.querySelector(".instructions")
+const cursor = document.querySelector(".cursor img")
 
 //showing the values of each variable right away after starting the game
 timeElement.innerText = time
@@ -55,6 +56,25 @@ const showAnimal = () => {
   squares.forEach((sq) => {
     sq.textContent = "" // remove any text or image inside the square
     sq.onclick = null // remove any old click event from the square
+
+    //cursor whacking
+    sq.addEventListener("mouseenter", () => {
+      cursor.style.display = "block" // Show the cursor image when entering the square
+    })
+    sq.addEventListener("mouseleave", () => {
+      cursor.style.display = "none" //
+      cursor.style.cursor = "auto" // Revert to normal cursor when leaving
+    })
+    sq.addEventListener("mousemove", (e) => {
+      cursor.style.top = e.pageY + "px"
+      cursor.style.left = e.pageX + "px"
+    })
+    sq.addEventListener("click", () => {
+      cursor.style.animation = "hit 100s ease"
+      setTimeout(() => {
+        cursor.style.removeProperty("animation")
+      }, 100)
+    })
   })
 
   //animal showing up randomly at any squares
@@ -160,7 +180,8 @@ resetGame.addEventListener("click", () => {
 //when the player hits on the strat game button from the index page then the first thing that the levelOne page will show is the instructions then the actual game begins
 const showInstructions = () => {
   instructions.style.opacity = 1 // show instructions page first
-
+  scoreElement.innerText = window.localStorage.getItem("score")
+  strikesElement.innerText = window.localStorage.getItem("strikes")
   // when the player clicks anywhere on the page then it will start the game
   instructions.addEventListener("click", () => {
     instructions.style.opacity = 0 // hide instructions
