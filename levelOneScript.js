@@ -1,8 +1,8 @@
 // global variables
 let time = 30 //initializing the timer
-let score = parseInt(window.localStorage.getItem("score")) || 0 // retrieve score from local storage or set to 0
+let score = 0
 let target = 5 //initializing how many target the player should hit for winning the game
-let strikes = parseInt(window.localStorage.getItem("strikes")) || 0 // retrieve score from local storage or set to 0
+let strikes = 0
 
 // connecting html elements
 const timeElement = document.querySelector("#time")
@@ -35,9 +35,6 @@ const startGame = () => {
   //so in this function the timer goes down each second (1000) and for each second it will be shown on the website and if the timer reached zero or less then it is game over.
 
   gameTimer = setInterval(() => {
-    //when the timer begins to count down then we get the item to show from the local storage
-    scoreElement.innerText = window.localStorage.getItem("score")
-    strikesElement.innerText = window.localStorage.getItem("strikes")
     time-- //the counter goes down by a second
     timeElement.innerText = time //each second that counts down will be overwritten
 
@@ -115,15 +112,11 @@ const showAnimal = () => {
   randomSquare.onclick = () => {
     if (animal === "goose") {
       score++
-      //setting a name for the item that I want to store in the local storage and every time the score increase it prints out the score that gets from the local storage
-      window.localStorage.setItem("score", score)
-      scoreElement.innerText = window.localStorage.getItem("score")
+      scoreElement.innerText = score
       checkWin()
     } else {
       strikes++
-      //setting a name for the strike var that I want to store in the local storage and every time the strikes increase it prints out the strike points that gets from the local storage
-      window.localStorage.setItem("strikes", strikes)
-      strikesElement.innerText = window.localStorage.getItem("strikes")
+      strikesElement.innerText = strikes
       if (strikes >= 3) {
         endGame(false) //if the player not wins then print otu the losing text
         gameResultBlock.style.opacity = 1
@@ -181,23 +174,13 @@ restartButton.addEventListener("click", () => {
   gameResultBlock.style.opacity = 0
   nextLevel.style.opacity = 0
   nextLevel.style.display = "none"
-  localStorage.clear()
   startGame()
-})
-
-resetGame.addEventListener("click", () => {
-  localStorage.clear()
-})
-
-nextLevel.addEventListener("click", () => {
-  localStorage.clear()
 })
 
 //when the player hits on the strat game button from the index page then the first thing that the levelOne page will show is the instructions then the actual game begins
 const showInstructions = () => {
   instructions.style.opacity = 1 // show instructions page first
-  scoreElement.innerText = window.localStorage.getItem("score")
-  strikesElement.innerText = window.localStorage.getItem("strikes")
+
   // when the player clicks anywhere on the page then it will start the game
   instructions.addEventListener("click", () => {
     instructions.style.opacity = 0 // hide instructions
