@@ -100,9 +100,13 @@ const showAnimal = () => {
   if (animal === "goose") {
     img.setAttribute("src", "images/goose.png")
     img.setAttribute("alt", "goose")
+    img.style.width = "100px"
+    img.style.height = "100px"
   } else {
     img.setAttribute("src", "images/cat.png")
     img.setAttribute("alt", "cat")
+    img.style.width = "100px"
+    img.style.height = "100px"
   }
   randomSquare.appendChild(img) // put the image inside the randomly chosen square so the player sees it
 
