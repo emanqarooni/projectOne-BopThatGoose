@@ -18,6 +18,10 @@ const gameResultBlock = document.querySelector(".gameResult")
 const instructions = document.querySelector(".instructions")
 const cursor = document.querySelector(".cursor img")
 
+//audio sounds
+const audioPop = new Audio("audio/pop1.wav")
+const audioMeow = new Audio("audio/Meow.ogg")
+
 //showing the values of each variable right away after starting the game
 timeElement.innerText = time
 scoreElement.innerText = score
@@ -111,10 +115,12 @@ const showAnimal = () => {
   //https://www.geeksforgeeks.org/javascript/difference-between-addeventlistener-and-onclick-in-javascript/
   randomSquare.onclick = () => {
     if (animal === "goose") {
+      audioPop.play()
       score++
       scoreElement.innerText = score
       checkWin()
     } else {
+      audioMeow.play()
       strikes++
       strikesElement.innerText = strikes
       if (strikes >= 3) {

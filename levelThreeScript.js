@@ -17,6 +17,11 @@ const gameResultBlock = document.querySelector(".gameResult")
 const instructions = document.querySelector(".instructions")
 const cursor = document.querySelector(".cursor img")
 
+//audio sounds
+const audioPop = new Audio("audio/pop1.wav")
+const audioMeow = new Audio("audio/Meow.ogg")
+const audioTimeBoost = new Audio("audio/powerUp.ogg")
+
 //showing the values of each variable right away after starting the game
 timeElement.innerText = time
 scoreElement.innerText = score
@@ -114,14 +119,17 @@ const showIcon = () => {
   //https://www.geeksforgeeks.org/javascript/difference-between-addeventlistener-and-onclick-in-javascript/
   randomSquare.onclick = () => {
     if (icon === "goose") {
+      audioPop.play()
       score++
       //setting a name for the item that I want to store in the local storage and every time the score increase it prints out the score that gets from the local storage
       scoreElement.innerText = score
       checkWin()
     } else if (icon === "bread") {
+      audioTimeBoost.play()
       time += 10
       timeElement.innerText = time
     } else {
+      audioMeow.play()
       strikes++
       //setting a name for the strike var that I want to store in the local storage and every time the strikes increase it prints out the strike points that gets from the local storage
       strikesElement.innerText = strikes
