@@ -67,7 +67,7 @@ const showAnimal = () => {
       cursor.style.display = "block" // Show the cursor image when entering the square
     })
     sq.addEventListener("mouseleave", () => {
-      cursor.style.display = "none" //
+      cursor.style.display = "none"
       cursor.style.cursor = "auto" // Revert to normal cursor when leaving
     })
     sq.addEventListener("mousemove", (e) => {
@@ -183,7 +183,7 @@ restartButton.addEventListener("click", () => {
   startGame()
 })
 
-//when the player hits on the strat game button from the index page then the first thing that the levelOne page will show is the instructions then the actual game begins
+//when the player hits on the start game button from the index page then the first thing that the levelOne page will show is the instructions then the actual game begins
 const showInstructions = () => {
   instructions.style.opacity = 1 // show instructions page first
 
