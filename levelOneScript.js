@@ -34,8 +34,6 @@ let animalTimer //used for showing a new animal every second and stop showing th
 
 // a function that start the game
 const startGame = () => {
-  //I saw this way of counting down the timer from a reddit comment from this post: https://www.reddit.com/r/learnjavascript/comments/ql9yes/how_to_set_up_a_timer_in_javascript/
-  //and I understood more about set intervals and how to clear them from w3schools https://www.w3schools.com/jsref/met_win_setinterval.asp and https://www.w3schools.com/js/js_timing.asp
   //so in this function the timer goes down each second (1000) and for each second it will be shown on the website and if the timer reached zero or less then it is game over.
 
   gameTimer = setInterval(() => {
@@ -70,10 +68,14 @@ const showAnimal = () => {
       cursor.style.display = "none"
       cursor.style.cursor = "auto" // Revert to normal cursor when leaving
     })
+    //this event let's the cursor image know where the real cursor location is and it follow's it around.
     sq.addEventListener("mousemove", (e) => {
+      //e is the mouse event and e.pageX and e.pageY are the mouse coordinates relative to the whole page
+      //Adding "px" converts the number to a valid CSS length.
       cursor.style.top = e.pageY + "px"
       cursor.style.left = e.pageX + "px"
     })
+    //When i click on a square i tell the hammer to play the “hit” animation and then after a tiny bit by using set time out to stop the animation. That makes the hammer do a quick whack.
     sq.addEventListener("click", () => {
       cursor.style.animation = "hit 100s ease"
       setTimeout(() => {
@@ -109,10 +111,10 @@ const showAnimal = () => {
     img.style.width = "100px"
     img.style.height = "100px"
   }
-  randomSquare.appendChild(img) // put the image inside the randomly chosen square so the player sees it
+  randomSquare.appendChild(img) // put the image inside the randomly chosen index square so the player sees it
 
   //I used the onclick event instead of addEventListener because addEventListener keeps adding new listeners every time the square is updated. That means if I don’t remove them properly, a single click could trigger multiple functions and increase the score or strikes more than once or even two items like two cats showing up in one square. Using onclick is simpler here because it automatically overwrites the old click handler, so each square only responds once at a time.
-  //https://www.geeksforgeeks.org/javascript/difference-between-addeventlistener-and-onclick-in-javascript/
+
   randomSquare.onclick = () => {
     if (animal === "goose") {
       audioPop.play()
@@ -124,7 +126,7 @@ const showAnimal = () => {
       strikes++
       strikesElement.innerText = strikes
       if (strikes >= 3) {
-        endGame(false) //if the player not wins then print otu the losing text
+        endGame(false) //if the player not wins then print out the losing text
         gameResultBlock.style.opacity = 1
         restartButton.style.opacity = 1
         nextLevel.style.display = "none"
@@ -189,8 +191,7 @@ const showInstructions = () => {
 
   // when the player clicks anywhere on the page then it will start the game
   instructions.addEventListener("click", () => {
-    instructions.style.opacity = 0 // hide instructions
-    instructions.style.display = "none" //and remove the instructions so that the player can play
+    instructions.style.display = "none" //remove the instructions so that the player can play
     startGame() // start the game
   })
 }

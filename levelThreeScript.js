@@ -194,7 +194,6 @@ const showInstructions = () => {
   instructions.style.opacity = 1 // show instructions page first
   // when the player clicks anywhere on the page then it will start the game
   instructions.addEventListener("click", () => {
-    instructions.style.opacity = 0 // hide instructions
     instructions.style.display = "none" //and remove the instructions so that the player can play
     startGame() // start the game
   })

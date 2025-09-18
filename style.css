@@ -82,7 +82,6 @@ body {
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: repeat(3, 1fr);
-  gap: 0;
   height: 10vh;
   justify-content: center;
   align-items: center;
@@ -218,18 +217,17 @@ body {
 }
 
 .instructions {
-  position: fixed;
+  position: fixed; /*fixed to the viewport h and w*/
   top: 50%; /* centering vertically */
   left: 50%; /* centering horizontally */
   transform: translate(-50%, -50%); /* adjust for the element's own size */
   opacity: 1; /* starting with full visibility */
-  transition: all 0.5s ease;
   background-color: #f8e6c2;
   border: 12px solid #a0522d;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  z-index: 100; /* this property ensures that the instructions appears above other elements */
+  z-index: 2; /* this property ensures that the instructions appears above other elements */
   text-align: center;
   width: 35vw;
   height: 70vh;
@@ -237,12 +235,16 @@ body {
 }
 
 .cursor img {
-  position: absolute;
-  pointer-events: none;
-  transform: translate(-40%, -40%);
+  position: absolute; /*to make the mouse move everywhere on top of the other elements*/
+  pointer-events: none; /*to not block any clicks, to click on the actual animal and not the image cursor itself  and to not glitch*/
+  transform: translate(
+    -40%,
+    -40%
+  ); /*to position the cursor image and lining it up with the real mouse*/
   height: 90px;
 }
 
+/*@keyframes is used to create an animation, hit is the name of the animation*/
 @keyframes hit {
   from {
     transform: rotate(-30deg);

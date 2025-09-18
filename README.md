@@ -18,12 +18,15 @@
 * Figma
 
 ***
-### ***Screenshots***
-##### Figma link: [Figma](https://www.figma.com/design/jiI7PXerQ3rs0trE2KyXBk/BopTheCat?node-id=0-1&t=8LnQPqtUAwNjml4x-1)
+### ***Images of The Final Game***
 ###### Index Page:
-![Image](images/screenshot1.png)
+![Image](images/screenshot4.png)
 ###### Levels Page:
-![Image](images/screenshot2.png)
+![Image](images/screenshot5.png)
+###### Game Over:
+![Image](images/screenshot6.png)
+###### Win Game:
+![Image](images/screenshot7.png)
 
 ***
 ### ***Future Tasks***
